@@ -1,0 +1,7 @@
+/*********************************************************************
+*  base/functions
+*********************************************************************/
+
+@function grid($columns) {
+  @return ($columns * perc($grid-column-width)) + (($columns - 1) * perc($grid-gutter));
+}

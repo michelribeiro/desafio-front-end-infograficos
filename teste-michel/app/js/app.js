@@ -1,0 +1,1 @@
+var IG = angular.module('IG', []);

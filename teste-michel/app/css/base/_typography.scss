@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: $TYPE_FONT_BASIC;
+    font-size: $PROJECT_FONT_SIZE;
+}
+
+ul, li {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+
+a {
+    text-decoration: none;
+    color: $LINK_COLOR;
+}
+
+h2 {
+    font-size: $HEADING-2;
+}
+
+h3 {
+    font-size: $HEADING-3;
+}
+
+h4 {
+    font-size: $HEADING-4;
+}
+
+h5 {
+    font-size: $HEADING-5;
+}
+
+h6 {
+    font-size: $HEADING-6;
+}
+
+label {
+    font-size: $LABEL;
+}

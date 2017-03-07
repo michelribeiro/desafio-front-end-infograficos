@@ -10,6 +10,8 @@ module.exports = function(grunt) {
         sprite: 'grunt-spritesmith' //PARA OTIMIZAR O SPRITE PRECISA DESSA CONFIGURAÇÃO
     });
 
+    var mozjpeg = require('imagemin-mozjpeg');
+
     // Configurable paths
     var config = {
         app: 'app',
@@ -41,19 +43,108 @@ module.exports = function(grunt) {
             src: ['.tmp/', 'dist/']
         },
 
+        uglify: {
+            dev: {
+                options: {
+                    sourceMap: false,
+                    sourceMapIncludeSources: false,
+                    beautify: true,
+                    mangle: false
+                },
+                src: [
+                    '<%= config.app %>/js/main-modules.js',
+                    '<%= config.app %>/js/moduleInitializer.js',
+                    '<%= config.app %>/js/modules/*.js',
+                ],
+                    dest: '<%= config.app %>/js/main.js'
+            }
+        },
+
         watch: {
             options: {
                 livereload: true
             },
 
             html: {
-                files: '<%= config.app %>/*.html'
+                files: '<%= config.app %>/**/*.html'
             },
-            css: {
-                files: '<%= config.app %>/css/**/*.css'
+            js: {
+                files: ['<%= config.app %>/js/**/*.js']
+            },
+            sass: {
+                files: ['<%= config.app %>/css/**/*.scss'],
+                tasks: ['sass:dev', 'autoprefixer:dev']
+            },
+            images: {
+                files: ['<%= config.app %>/images/**/*.{png,jpg,gif,svg}'],
+                tasks: ['imagemin:dev'],
             },
             js: {
                 files: '<%= config.app %>/js/**/*.js'
+            }
+        },
+
+        // Compress the CSS.
+        sass: {
+            dev: {
+                options: {
+                    sourcemap: 'auto',
+                    style: 'expanded'
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/css/',
+                    src: ['**/*.scss'],
+                    dest: '<%= config.app %>/css/',
+                    ext: '.css'
+                }]
+            },
+            dist: {
+                options: {
+                    sourcemap: 'none',
+                    style: 'expanded' //expanded or compressed
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/css/',
+                    src: ['**/*.scss'],
+                    dest: '<%= config.app %>/css/',
+                    ext: '.css'
+                }]
+            }
+        },
+
+        // Auto prefix css
+        autoprefixer: {
+            dev: {
+                options: {
+                    map: true,
+                    browsers: ['last 2 versions', 'ie 9', '> 1%']
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.tmp %>/css/',
+                    src: '{,*/}*.css',
+                    dest: '<%= config.tmp %>/css/'
+                }]
+            }
+        },
+
+        imagemin: {
+            dev: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/images/',
+                    src: ['**/*.{png,jpg,gif}', '!sprite/**'],
+                    dest: '<%= config.app %>/images/'
+                }]
+            },
+            static: {
+                options: { // Target options
+                    optimizationLevel: 1,
+                    svgoPlugins: [{ removeViewBox: false }],
+                    use: [mozjpeg({quality: 100})]
+                }
             }
         },
 
@@ -77,7 +168,11 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'clean',
         'cleanempty',
+        'sass:dev',
+        'uglify:dev',
+        'imagemin:dev',
         'connect',
-        'watch'
+        'watch',
+        'autoprefixer:dev'
     ]);
 };
