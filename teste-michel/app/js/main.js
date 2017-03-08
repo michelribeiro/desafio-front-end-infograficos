@@ -1,3 +1,26 @@
+function setaImagem() {
+    var settings = {
+        primeiraImg: function() {
+            elemento = document.querySelector("#slider a:first-child"), elemento.classList.add("ativo");
+        },
+        slide: function() {
+            elemento = document.querySelector(".ativo"), elemento.nextElementSibling ? (elemento.nextElementSibling.classList.add("ativo"), 
+            elemento.classList.remove("ativo")) : (elemento.classList.remove("ativo"), settings.primeiraImg());
+        },
+        proximo: function() {
+            elemento = document.querySelector(".ativo"), elemento.nextElementSibling ? (elemento.nextElementSibling.classList.add("ativo"), 
+            elemento.classList.remove("ativo")) : (elemento.classList.remove("ativo"), settings.primeiraImg());
+        },
+        anterior: function() {
+            elemento = document.querySelector(".ativo"), elemento.previousElementSibling ? (elemento.previousElementSibling.classList.add("ativo"), 
+            elemento.classList.remove("ativo")) : (elemento.classList.remove("ativo"), elemento = document.querySelector("a:last-child"), 
+            elemento.classList.add("ativo"));
+        }
+    };
+    settings.primeiraImg(), document.querySelector(".next").addEventListener("click", settings.proximo, !1), 
+    document.querySelector(".prev").addEventListener("click", settings.anterior, !1);
+}
+
 var Infoglobo = {};
 
 Infoglobo.Pages = {}, $(function() {
@@ -27,4 +50,29 @@ Infoglobo.Pages = {}, $(function() {
     }, Alerta.fn.click = function() {
         console.log("gravou");
     }, Alerta;
-}();
+}(), window.addEventListener("load", setaImagem, !1);
+
+var ig = angular.module("ig", [ "ngRoute" ]);
+
+ig.config(function($routeProvider) {
+    $routeProvider.when("/", {
+        templateUrl: "views/listnews.html",
+        controller: "homeCtrl"
+    }).otherwise({
+        redirectTo: "/"
+    });
+}), ig.controller("homeCtrl", [ "$scope", "ig", function($scope, ig) {
+    ig.success(function(data) {
+        $scope.itemSlide = data;
+    });
+} ]), ig.factory("ig", [ "$http", function($http) {
+    return $http.get("data/slide.json", {
+        header: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    }).success(function(data) {
+        return data;
+    }).error(function(err) {
+        return err;
+    });
+} ]);

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html ng-app="ig" lang="pt-br">
 <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <title>InfoGráficos</title>
     <link rel="stylesheet" href="css/main.css">
     <script src="js/vendor/jquery-3.1.1.min.js"></script>
+
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/angular-route.js"></script>
     <script src="js/main.js"></script>
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="js/api-graphic.js"></script>
 </head>
 <body>
     <main role='main'>
@@ -14,7 +20,7 @@
             <div class="content">
                 <header>
                     <h1>
-                        <a href="#" title="Minuto News">
+                        <a href="#" title="Minuto News" data-module="Alerta">
                             <img src="images/logo-minuto-news.png" alt="Minuto News">
                         </a>
                     </h1>
@@ -48,99 +54,35 @@
             </div>
         </div>
         <div class="slideshow-container">
-            <img src="images/slide/1.jpg" alt="">
+
+            <figure>
+               <span class="trs next"></span>
+               <span class="trs prev"></span>
+               <div id="slider">
+                    <div>
+                      <a href="#" class="trs">
+                        <img src="images/slide/1.jpg" alt="Legenda 1">
+                      </a>
+                      <a href="#" class="trs">
+                        <img src="images/slide/2.jpg" alt="Legenda 2">
+                      </a>
+                  </div>
+               </div>
+
+            </figure>
+
         </div>
 
-        <div class="content">
-            <div class="editorials">
-                <div class="header-editorias">
-                    <div class="title-section">
-                        <h2>EDITORIAS</h2>
-                    </div>
-                    <form action="" class="filter">
-                        <label for="data">Ordernar por:</label>
-                        <select name="data">
-                            <option value="">....</option>
-                            <option value="1">DATA</option>
-                            <option value="2">Mais recente</option>
-                            <option value="3">Mais antiga</option>
-                            <option value="4">Ordem alfabética</option>
-                        </select>
-                        <label for="editorials-label">Ordernar por:</label>
-                        <select name="editorials-label">
-                            <option value="" selected>EDITORIA</option>
-                            <option value="2">1</option>
-                            <option value="3">2</option>
-                        </select>
-                    </form>
-                </div>
-                <section class="news">
-                    <span class="date">20/10/2016</span>
-                    <span class="category">Governo</span>
-                    <figure>
-                        <img src="images/news/1.jpg" alt="Votação encerrada">
-                    </figure>
-                    <h3>Votação encerrada</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-                    <p><a href="#">Saiba mais</a></p>
-                </section>
-                <section class="news">
-                    <span class="date">20/10/2016</span>
-                    <span class="category">Governo</span>
-                    <figure>
-                        <img src="images/news/1.jpg" alt="Votação encerrada">
-                    </figure>
-                    <h3>Votação encerrada</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-                    <p><a href="#">Saiba mais</a></p>
-                </section>
-                <section class="news">
-                    <span class="date">20/10/2016</span>
-                    <span class="category">Governo</span>
-                    <figure>
-                        <img src="images/news/1.jpg" alt="Votação encerrada">
-                    </figure>
-                    <h3>Votação encerrada</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-                    <p><a href="#">Saiba mais</a></p>
-                </section>
-                <section class="news">
-                    <span class="date">20/10/2016</span>
-                    <span class="category">Governo</span>
-                    <figure>
-                        <img src="images/news/1.jpg" alt="Votação encerrada">
-                    </figure>
-                    <h3>Votação encerrada</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-                    <p><a href="#">Saiba mais</a></p>
-                </section>
-                <section class="news">
-                    <span class="date">20/10/2016</span>
-                    <span class="category">Governo</span>
-                    <figure>
-                        <img src="images/news/1.jpg" alt="Votação encerrada">
-                    </figure>
-                    <h3>Votação encerrada</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-                    <p><a href="#">Saiba mais</a></p>
-                </section>
-                <section class="news">
-                    <span class="date">20/10/2016</span>
-                    <span class="category">Governo</span>
-                    <figure>
-                        <img src="images/news/1.jpg" alt="Votação encerrada">
-                    </figure>
-                    <h3>Votação encerrada</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-                    <p><a href="#">Saiba mais</a></p>
-                </section>
-            </div>
-        </div>
+        <div ng-view></div>
+
         <hr class="border-dashed">
         <div class="content">
             <div class="graphic">
                 <div class="graphic-view">
                     <h2>EDITORIAS MAIS ACESSADAS</h2>
+
+                    <div id="chart_div"></div>
+
                 </div>
                 <div class="graphic-text">
                     <h3>Título aqui</h3>
@@ -155,7 +97,7 @@
         </div>
         <hr class="border-dashed">
         <div class="maps">
-            API google
+            <div id="map"></div>
         </div>
         
         <div class="contact-content">
@@ -210,6 +152,40 @@
             </div>
         </footer>
     </main>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6Vd1k4xATuvjvvbnpghI48FCAvA1YFoo&callback=initMap"></script>
+
+<script type="text/javascript">
+    function initMap() {
+  var myLatlng = {lat: -22.909268, lng: -43.194523};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 16,
+    center: myLatlng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map,
+    title: 'InfoGlobo',
+    icon: 'images/marcador.png'
+  });
+
+  map.addListener('center_changed', function() {
+    // 3 seconds after the center of the map has changed, pan back to the
+    // marker.
+    window.setTimeout(function() {
+      map.panTo(marker.getPosition());
+    }, 3000);
+  });
+
+  marker.addListener('click', function() {
+    map.setZoom(8);
+    map.setCenter(marker.getPosition());
+  });
+}
+</script>
 
 </body>
 </html>

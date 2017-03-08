@@ -54,7 +54,10 @@ module.exports = function(grunt) {
                 src: [
                     '<%= config.app %>/js/main-modules.js',
                     '<%= config.app %>/js/moduleInitializer.js',
-                    '<%= config.app %>/js/modules/*.js',
+                    '<%= config.app %>/js/modules/**/*.js',
+                    '<%= config.app %>/js/app.js',
+                    '<%= config.app %>/js/controllers.js',
+                    '<%= config.app %>/js/services.js',
                 ],
                     dest: '<%= config.app %>/js/main.js'
             }
@@ -78,9 +81,6 @@ module.exports = function(grunt) {
             images: {
                 files: ['<%= config.app %>/images/**/*.{png,jpg,gif,svg}'],
                 tasks: ['imagemin:dev'],
-            },
-            js: {
-                files: '<%= config.app %>/js/**/*.js'
             }
         },
 
