@@ -1,7 +1,7 @@
 
-var ig = angular.module('ig', ['ngRoute']);
+var ig = angular.module('ig', ['ngRoute', 'base.controllers']);
 
-ig.config(function($routeProvider) {
+ig.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
 
 	$routeProvider
 	.when('/', {
@@ -10,5 +10,5 @@ ig.config(function($routeProvider) {
     })
     .otherwise({ redirectTo: '/' });
 
-});
+}]);
 

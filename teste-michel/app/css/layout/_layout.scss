@@ -41,7 +41,7 @@ header {
             border-bottom: solid 4px #b22d30;
         }
 
-        .dropdown:hover .dropdown-content {
+        .dropdown li:hover > .dropdown-content {
             display: block;
         }
 

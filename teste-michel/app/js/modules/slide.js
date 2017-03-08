@@ -1,12 +1,13 @@
 function setaImagem(){
     var settings = {
         primeiraImg: function(){
-            elemento = document.querySelector("#slider a:first-child");
-            elemento.classList.add("ativo");
+            elemento = $("#slider a:first-child").addClass("ativo");
+
+            //elemento.classList.add("ativo");
         },
  
         slide: function(){
-            elemento = document.querySelector(".ativo");
+            elemento = $(".ativo").find();
  
             if(elemento.nextElementSibling){
                 elemento.nextElementSibling.classList.add("ativo");

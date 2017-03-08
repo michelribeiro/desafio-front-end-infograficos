@@ -52,12 +52,12 @@ module.exports = function(grunt) {
                     mangle: false
                 },
                 src: [
-                    '<%= config.app %>/js/main-modules.js',
-                    '<%= config.app %>/js/moduleInitializer.js',
-                    '<%= config.app %>/js/modules/**/*.js',
                     '<%= config.app %>/js/app.js',
-                    '<%= config.app %>/js/controllers.js',
                     '<%= config.app %>/js/services.js',
+                    '<%= config.app %>/js/controllers.js',
+                    '<%= config.app %>/js/modules/listSlide.js',
+                    '<%= config.app %>/js/modules/slide.js',
+                    '<%= config.app %>/js/api-graphic.js'
                 ],
                     dest: '<%= config.app %>/js/main.js'
             }
@@ -72,7 +72,8 @@ module.exports = function(grunt) {
                 files: '<%= config.app %>/**/*.html'
             },
             js: {
-                files: ['<%= config.app %>/js/**/*.js']
+                files: ['<%= config.app %>/js/**/*.js'],
+                tasks: ['uglify:dev']
             },
             sass: {
                 files: ['<%= config.app %>/css/**/*.scss'],
