@@ -16,8 +16,8 @@
 * Instale o [NodeJs](https://nodejs.org/en)
 * Instale o [gruntjs](http://gruntjs.com/getting-started)
 
-# Instalando as dependências do GruntJs:
-* Depois que tiver instalado o NodeJs abra o terminal da pasta do projeto e rode o comando (npm install).
+# Instalando as dependências do que o GruntJs precisrá:
+* Depois que tiver instalado o NodeJs abra o terminal na pasta do projeto e rode o comando (npm install).
 * Após a instalação de todas as dependências, rode o comando (grunt).
 
 
