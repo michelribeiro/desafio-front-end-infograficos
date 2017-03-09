@@ -24,15 +24,20 @@
 
         <!-- <div ng-repeat="listNews in news"> -->
             <section class="news" ng-repeat="news in opcaoFiltroEditoria['Notícias'] | orderBy: ordenar(ordenacao)">
-                <span class="date">{{news['Data de publicação']}}</span>
-                <span class="category">{{news.Editoria}}</span>
-                <figure>
-                    <img src="images/news/{{news.Foto}}">
-                </figure>
-                <h3>{{news['Título']}}</h3>
-                <p>{{news.Texto}}</p>
+                <div class="boxConteiner">
+                    <span class="date">{{news['Data de publicação']}}</span>
+                    <span class="category">{{news.Editoria}}</span>
+
+                    <figure>
+                        <img src="images/news/{{news.Foto}}">
+                    </figure>
+
+                    <h3>{{news['Título']}}</h3>
+                    <p>{{news.Texto}}</p>
+                </div>
 
                 <a href="#">Saiba mais</a>
+
             </section>
         <!-- </div> -->
 
