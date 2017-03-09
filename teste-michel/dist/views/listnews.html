@@ -1,0 +1,45 @@
+
+<!-- ng-repeat de editoria depois ng-repeat dentro de editoria -->
+
+<div class="content">
+    <div class="editorials">
+        <div class="header-editorias">
+            <div class="title-section">
+                <h2>EDITORIAS {{teste}}</h2>
+            </div>
+            <form action="" class="filter">
+                <label for="data">Ordernar por:</label>
+                <select name="data" ng-model="ordenacao">
+                    <option value="">...Escolha...</option>
+                    <option value="recente">Mais recente</option>
+                    <option value="antiga">Mais antiga</option>
+                    <option value="alfabetica">Ordem alfabética</option>
+                </select>
+                <label for="editorials-label">Filtrar por:</label>
+                <select ng-options="item as item.Editoria for item in news" ng-model='opcaoFiltroEditoria' ng-change="funcao()">
+                    <option value="">...Escolha...</option>
+                </select>
+            </form>
+        </div>
+
+        <!-- <div ng-repeat="listNews in news"> -->
+            <section class="news" ng-repeat="news in opcaoFiltroEditoria['Notícias'] | orderBy: ordenar(ordenacao)">
+                <div class="boxConteiner">
+                    <span class="date">{{news['Data de publicação']}}</span>
+                    <span class="category">{{news.Editoria}}</span>
+
+                    <figure>
+                        <img src="images/news/{{news.Foto}}">
+                    </figure>
+
+                    <h3>{{news['Título']}}</h3>
+                    <p>{{news.Texto}}</p>
+                </div>
+
+                <a href="#">Saiba mais</a>
+
+            </section>
+        <!-- </div> -->
+
+    </div>
+</div>

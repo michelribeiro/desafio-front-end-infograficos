@@ -1,14 +1,24 @@
 # Teste - Michel Ribeiro
 
 # O que estou utilizando ?
-* Automação com GRUNT.js
-* AngularJs para leitura de Json
+* GruntJs
+* Sass
+* Jquery
+* AngularJs
 
-## Primeiros passos.
+# O projeto tem 2 pastas importantes:
+* A pasta 'app' esta o font do teste, nele você poderá olhar o .scss como foi escrito antes de virar .css.
+* A pasta 'dist' esta o font final para ser colocado no servidor web ou local, todas as imagens e .Js já foram comprimidas.
+
+# Como rodar o projeto ?
+
+## Caso você queira rodar o projeto utilizando o GruntJs, siga os passos abaixo:
 * Instale o [NodeJs](https://nodejs.org/en)
 * Instale o [gruntjs](http://gruntjs.com/getting-started)
 
-## O que faço para rodar o projeto ?
-* Abra o terminal na pasta onde salvou o projeto;
-* Instale as dependências com o comando "npm install";
-* Ainda no terminal, digite "grunt".
+# Instalando as dependências do GruntJs:
+* Depois que tiver instalado o NodeJs abra o terminal da pasta do projeto e rode o comando (npm install).
+* Após a instalação de todas as dependências, rode o comando (grunt).
+
+
+## Qualquer dúvida segue o [LINK](http://www.michelribeiro.com.br/cliente/ig) do projeto funcionando.

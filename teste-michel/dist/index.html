@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html ng-app="ig" lang="pt-br">
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>InfoGráficos</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/angular-route.js"></script>
+
+    <script src="js/main.js"></script>
+
+</head>
+<body>
+    <main role='main'>
+        <div class="header-border">
+            <div class="content">
+                <header>
+                    <h1>
+                        <a href="#" title="Minuto News">
+                            <img src="images/logo-minuto-news.png" alt="Minuto News">
+                        </a>
+                    </h1>
+                    <nav>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="#" class="active">Início</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub-item">Brasil</a>
+                                <ul class="dropdown-content">
+                                    <li><a href="">Submenu 01</a></li>
+                                    <li><a href="">Submenu 02</a></li>
+                                    <li><a href="">Submenu 03</a></li>
+                                    <li><a href="">Submenu 04</a></li>
+                                    <li><a href="">Submenu 05</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Mundo</a>
+                            </li>
+                            <li>
+                                <a href="#">Blogs</a>
+                            </li>
+                            <li>
+                                <a href="#">Assine</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+        <div class="slideshow-container" ng-controller="slideCtrl">
+
+            <figure>
+               <span class="span-slide trs next"></span>
+               <span class="span-slide trs prev"></span>
+               
+               <div id="slider">
+                    <a href="javascript:undefined;" class="trs" ng-repeat="item in itemSlides">
+                        <img src="images/slide/{{item}}">
+                    </a>
+               </div>
+
+            </figure>
+
+        </div>
+
+        <div ng-view></div>
+
+        <hr class="border-dashed">
+        <div class="content">
+            <div class="graphic">
+                <div class="graphic-view">
+                    <h2>EDITORIAS MAIS ACESSADAS</h2>
+
+                    <div id="chart_div"></div>
+
+                </div>
+                <div class="graphic-text">
+                    <h3>Título aqui</h3>
+                    <div class="graphic-text-list">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+                    </div>
+                    <div class="graphic-text-list">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="border-dashed">
+        <div class="maps">
+            <div id="map"></div>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-content-info">
+                <section>
+                    <h2>ENTRE EM CONTATO</h2>
+                    <h3>Onde nos achar</h3>
+                    <address>
+                        <p>
+                            Rua dos Alfeneiros, número 4
+                            <br>
+                            00-91102
+                            <br>
+                            Little Whitning
+                            <br>
+                            Londres/Inglatera
+                            <br>
+                            <br>
+                            (21) 4004 - 1234
+                            <br>
+                            (21) 4004 - 4321
+                            <br>
+                            <br>
+                            contato@minutonews.com.br
+                            <br>
+                            <br>
+                            Aberto de segunda a sexta das 09h as 19h
+                        </p>
+                    </address>
+                </section>
+            </div>
+            <div class="contact-content-form">
+                <h3>Mande uma mensagem</h3>
+                <form action="#" class="contact-form">
+                    <label for="name">Seu nome:</label>
+                    <input type="text" name="name" class="ipt-form">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="ipt-form">
+                    <label for="message">Mensagem:</label>
+                    <textarea name="message" cols="30" rows="10" class="ipt-form"></textarea>
+                    <br>
+                    <button>Enviar</button>
+
+                </form>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="content">
+                <p>&copy; Entrevista | Front-End</p>
+            </div>
+        </footer>
+    </main>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6Vd1k4xATuvjvvbnpghI48FCAvA1YFoo&callback=initMap"></script>
+
+<script type="text/javascript">
+    function initMap() {
+  var myLatlng = {lat: -22.909268, lng: -43.194523};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 16,
+    center: myLatlng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map,
+    title: 'InfoGlobo',
+    icon: 'images/marcador.png'
+  });
+
+  map.addListener('center_changed', function() {
+    // 3 seconds after the center of the map has changed, pan back to the
+    // marker.
+    window.setTimeout(function() {
+      map.panTo(marker.getPosition());
+    }, 3000);
+  });
+
+  marker.addListener('click', function() {
+    map.setZoom(8);
+    map.setCenter(marker.getPosition());
+  });
+}
+</script>
+
+</body>
+</html>
