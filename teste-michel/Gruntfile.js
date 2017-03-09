@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                     '<%= config.app %>/js/modules/slide.js',
                     '<%= config.app %>/js/api-graphic.js'
                 ],
-                    dest: '<%= config.app %>/js/main.js'
+                    dest: '<%= config.tmp %>/js/main.js'
             }
         },
 

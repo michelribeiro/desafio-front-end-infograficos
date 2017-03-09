@@ -9,80 +9,32 @@
             </div>
             <form action="" class="filter">
                 <label for="data">Ordernar por:</label>
-                <select name="data">
-                    <option value="">....</option>
-                    <option value="1">DATA</option>
-                    <option value="2">Mais recente</option>
-                    <option value="3">Mais antiga</option>
-                    <option value="4">Ordem alfabética</option>
+                <select name="data" ng-model="ordenacao">
+                    <option value="">...Escolha...</option>
+                    <option value="recente">Mais recente</option>
+                    <option value="antiga">Mais antiga</option>
+                    <option value="alfabetica">Ordem alfabética</option>
                 </select>
-                <label for="editorials-label">Ordernar por:</label>
-                <select name="editorials-label">
-                    <option value="" selected>EDITORIA</option>
-                    <option value="2">1</option>
-                    <option value="3">2</option>
+                <label for="editorials-label">Filtrar por:</label>
+                <select ng-options="item as item.Editoria for item in news" ng-model='opcaoFiltroEditoria' ng-change="funcao()">
+                    <option value="">...Escolha...</option>
                 </select>
             </form>
         </div>
-        <section class="news">
-            <span class="date">20/10/2016</span>
-            <span class="category">Governo</span>
-            <figure>
-                <img src="images/news/1.jpg" alt="Votação encerrada">
-            </figure>
-            <h3>Votação encerrada</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-            <p><a href="#">Saiba mais</a></p>
-        </section>
-        <section class="news">
-            <span class="date">20/10/2016</span>
-            <span class="category">Governo</span>
-            <figure>
-                <img src="images/news/1.jpg" alt="Votação encerrada">
-            </figure>
-            <h3>Votação encerrada</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-            <p><a href="#">Saiba mais</a></p>
-        </section>
-        <section class="news">
-            <span class="date">20/10/2016</span>
-            <span class="category">Governo</span>
-            <figure>
-                <img src="images/news/1.jpg" alt="Votação encerrada">
-            </figure>
-            <h3>Votação encerrada</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-            <p><a href="#">Saiba mais</a></p>
-        </section>
-        <section class="news">
-            <span class="date">20/10/2016</span>
-            <span class="category">Governo</span>
-            <figure>
-                <img src="images/news/1.jpg" alt="Votação encerrada">
-            </figure>
-            <h3>Votação encerrada</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-            <p><a href="#">Saiba mais</a></p>
-        </section>
-        <section class="news">
-            <span class="date">20/10/2016</span>
-            <span class="category">Governo</span>
-            <figure>
-                <img src="images/news/1.jpg" alt="Votação encerrada">
-            </figure>
-            <h3>Votação encerrada</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-            <p><a href="#">Saiba mais</a></p>
-        </section>
-        <section class="news">
-            <span class="date">20/10/2016</span>
-            <span class="category">Governo</span>
-            <figure>
-                <img src="images/news/1.jpg" alt="Votação encerrada">
-            </figure>
-            <h3>Votação encerrada</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum viverra diam ut venenatis.</p>
-            <p><a href="#">Saiba mais</a></p>
-        </section>
+
+        <!-- <div ng-repeat="listNews in news"> -->
+            <section class="news" ng-repeat="news in opcaoFiltroEditoria['Notícias'] | orderBy: ordenar(ordenacao)">
+                <span class="date">{{news['Data de publicação']}}</span>
+                <span class="category">{{news.Editoria}}</span>
+                <figure>
+                    <img src="images/news/{{news.Foto}}">
+                </figure>
+                <h3>{{news['Título']}}</h3>
+                <p>{{news.Texto}}</p>
+
+                <a href="#">Saiba mais</a>
+            </section>
+        <!-- </div> -->
+
     </div>
 </div>

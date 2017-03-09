@@ -3,7 +3,6 @@ function setaImagem(){
         primeiraImg: function(){
             elemento = $("#slider a:first-child").addClass("ativo");
 
-            //elemento.classList.add("ativo");
         },
  
         slide: function(){
